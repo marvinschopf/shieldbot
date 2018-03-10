@@ -9,7 +9,7 @@ const funcs = require("./funcs.coffee");
 const cmds = require('./cmds.coffee');
 const events = require('./events.coffee');
 
-var VERSION = "1.0.";
+var VERSION = "0.1 Build ";
 // Extending version with number of commits from github master branch
 VERSION += parseInt(aload.$(aload("https://github.com/MagicMarvMan/shieldbot"))('li[class="commits"]').text());
 
