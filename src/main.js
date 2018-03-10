@@ -68,6 +68,10 @@ bot.registerCommand("pong", cmds.pong, { // Make a pong command
 
 bot.registerCommand("version", cmds.version, {description: "Get the version"});
 
+bot.registerCommand("testargs", cmds.testargs, {description: "Test command arguments - only for IndoorSkydiver!"})
+
+bot.registerCommand("poke", cmds.poke, {description: "Poke a user"});
+
 /**
  * Sending an embed message.
  * @param {MessageChannel} chan

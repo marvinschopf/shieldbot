@@ -11,3 +11,6 @@ exports.setStatus = (status) ->
 
 exports.info = (i) ->
   console.log(i)
+
+exports.poke = (user, target) ->
+  
