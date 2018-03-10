@@ -72,6 +72,8 @@ bot.registerCommand("testargs", cmds.testargs, {description: "Test command argum
 
 bot.registerCommand("poke", cmds.poke, {description: "Poke a user"});
 
+bot.registerCommand("avatarlink", cmds.avatarlink, {description: "Get the avatarlink"});
+
 /**
  * Sending an embed message.
  * @param {MessageChannel} chan
