@@ -13,6 +13,17 @@ var VERSION = "0.1 Build ";
 // Extending version with number of commits from github master branch
 VERSION += parseInt(aload.$(aload("https://github.com/MagicMarvMan/shieldbot"))('li[class="commits"]').text());
 
+const Color = {
+    red:    0xe50202,
+    green:  0x51e502,
+    cyan:   0x02e5dd,
+    blue:   0x025de5,
+    violet: 0x9502e5,
+    pink:   0xe502b4,
+    gold:   0xe5da02,
+    orange: 0xe54602
+}
+
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
 
 const bot = new Eris.CommandClient(config.token, {}, {
