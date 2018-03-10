@@ -5,3 +5,7 @@ fs = require 'fs'
 
 bot = null
 exports.setBot = (b) -> bot = b
+
+
+exports.ping = () -> "Pong!"
+exports.pong = () -> "Ping!"
