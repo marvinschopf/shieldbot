@@ -8,3 +8,6 @@ exports.setBot = (b) -> bot = b
 
 exports.setStatus = (status) ->
   bot.editStatus {name: status}
+
+exports.info = (i) ->
+  console.log(i)

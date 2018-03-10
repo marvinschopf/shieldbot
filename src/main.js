@@ -4,9 +4,11 @@ const Discord = require('discord.js');
 const fs      = require('fs')
 const { CmdParser } = require('./cmdparser.js')
 const Eris = require('eris');
+const colors = require('colors')
 const aload = require('after-load');
 const funcs = require("./funcs.coffee");
 const cmds = require('./cmds.coffee');
+const chatflag = require('./chatflag.js');
 const events = require('./events.coffee');
 
 var VERSION = "0.1 Build ";
@@ -36,6 +38,7 @@ funcs.setBot(bot);
 cmds.setBot(bot);
 events.setBot(bot);
 cmds.setVersion(VERSION);
+chatflag.setBot(bot);
 
 /*
   ≤=======≥
@@ -46,6 +49,7 @@ cmds.setVersion(VERSION);
 bot.on("ready", () => {
   funcs.setStatus("NodeJS");
 });
+
 
 bot.registerCommandAlias("halp", "help"); // Alias !halp to !help
 
@@ -64,8 +68,26 @@ bot.registerCommand("pong", cmds.pong, { // Make a pong command
 
 bot.registerCommand("version", cmds.version, {description: "Get the version"});
 
+/**
+ * Sending an embed message.
+ * @param {MessageChannel} chan
+ * @param {String} content
+ * @param {String} title
+ * @param {Number} clr
+ * @returns Message
+ */
+function sendEmbed(chan, content, title, clr) {
+    if (typeof title === "undefined")
+        title = null;
+    if (typeof color === "undefined")
+        color = null;
+    return bot.createMessage(chan.id, {embed: {title: title, description: content, color: clr}})
+}
 
-
+exports.info = funcs.info
+exports.checkMsg = chatflag.check
+exports.sendEmbed = sendEmbed
+exports.color = Color
 
 
 bot.connect();

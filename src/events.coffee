@@ -12,3 +12,6 @@ exports.setBot = (b) ->
 registerEvents = () ->
   bot.on "ready", () ->
     console.log "I am ready!"
+
+  bot.on "messageCreate", (msg) ->
+    main.checkMsg msg
