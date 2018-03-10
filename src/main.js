@@ -4,7 +4,10 @@ const Discord = require('discord.js');
 const fs      = require('fs')
 const { CmdParser } = require('./cmdparser.js')
 const Eris = require('eris');
-const funcs = require("./funcs.coffee");
+const funcs = require('./funcs.js');
+const funcsCoffee = require("./funcs.coffee");
+const cmds = require('./cmds.js');
+const cmdsCoffee = require('./cmds.coffee');
 
 const config = JSON.parse(fs.readFileSync('../config.json', 'utf8'))
 
@@ -14,7 +17,9 @@ const bot = new Eris.CommandClient(config.token, {}, {
   prefix: config.prefix
 });
 
+funcsCoffee.setBot(bot);
 funcs.setBot(bot);
+cmdsCoffee.setBot(bot);
 
 /*
   ≤=======≥
