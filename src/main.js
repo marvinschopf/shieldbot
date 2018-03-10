@@ -4,8 +4,7 @@ const Discord = require('discord.js');
 const fs      = require('fs')
 const { CmdParser } = require('./cmdparser.js')
 const Eris = require('eris');
-const funcs = require('./funcs.js');
-const funcsCoffee = require("./funcs.coffee");
+const funcs = require("./funcs.coffee");
 const cmds = require('./cmds.coffee');
 
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
@@ -16,7 +15,7 @@ const bot = new Eris.CommandClient(config.token, {}, {
   prefix: config.prefix
 });
 
-funcsCoffee.setBot(bot);
+funcs.setBot(bot);
 cmds.setBot(bot);
 
 /*
@@ -26,7 +25,7 @@ cmds.setBot(bot);
 */
 
 bot.on("ready", () => {
-
+  funcs.setStatus("NodeJS");
 });
 
 bot.registerCommandAlias("halp", "help"); // Alias !halp to !help

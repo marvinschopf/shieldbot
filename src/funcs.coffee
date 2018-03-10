@@ -5,3 +5,6 @@ fs = require 'fs'
 
 bot = null
 exports.setBot = (b) -> bot = b
+
+exports.setStatus = (status) ->
+  bot.editStatus {name: status}
