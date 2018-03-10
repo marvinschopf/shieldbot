@@ -4,9 +4,14 @@ const Discord = require('discord.js');
 const fs      = require('fs')
 const { CmdParser } = require('./cmdparser.js')
 const Eris = require('eris');
+const aload = require('after-load');
 const funcs = require("./funcs.coffee");
 const cmds = require('./cmds.coffee');
 const events = require('./events.coffee');
+
+var VERSION = "1.0.B";
+// Extending version with number of commits from github master branch
+VERSION += parseInt(aload.$(aload("https://github.com/MagicMarvMan/shieldbot"))('li[class="commits"]').text());
 
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
 
@@ -19,6 +24,7 @@ const bot = new Eris.CommandClient(config.token, {}, {
 funcs.setBot(bot);
 cmds.setBot(bot);
 events.setBot(bot);
+cmds.setVersion(VERSION);
 
 /*
   ≤=======≥
@@ -44,6 +50,8 @@ bot.registerCommand("pong", cmds.pong, { // Make a pong command
     description: "Ping!",
     fullDescription: "This command could also be used to check if the bot is up. Or entertainment when you're bored."
 });
+
+bot.registerCommand("version", cmds.version, {description: "Get the version"});
 
 
 
