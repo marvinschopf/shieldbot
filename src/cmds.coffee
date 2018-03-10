@@ -25,8 +25,8 @@ exports.avatarlink = (msg, args) ->
   if msg.mentions && msg.mentions != null
     for mention in msg.mentions
       if mention.avatarURL
-        msg.reply mention.username + mention.avatarURL
+        return mention.username + mention.avatarURL
       else
-        msg.reply mention.username + " unknown"
+        return mention.username + " unknown"
   else
-    msg.reply "Not found!"
+    return "Not found!"
