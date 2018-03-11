@@ -74,6 +74,7 @@ bot.registerCommand("poke", cmds.poke, {description: "Poke a user"});
 
 bot.registerCommand("avatarlink", cmds.avatarlink, {description: "Get the avatarlink"});
 
+bot.registerCommand("playfile", cmds.playfile, {description: "Play a file"});
 /**
  * Sending an embed message.
  * @param {MessageChannel} chan
