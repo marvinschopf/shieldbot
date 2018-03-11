@@ -1,5 +1,6 @@
 const EventEmitter = require('events')
 const Discord = require('discord.js')
+const main = require('./main.js')
 
 
 /**
@@ -109,31 +110,31 @@ class CmdParser {
             if (typeof options.msgcolor == "number")
                 this.options.msgcolor = options.msgcolor
             else if (options.msgcolor)
-                console.log("[CMDPARSER] Invalid option set for 'msgcolor'")
+                main.info("[CMDPARSER] Invalid option set for 'msgcolor'")
             if (typeof options.cmdlog == "boolean")
                 this.options.cmdlog = options.cmdlog
             else if (options.cmdlog)
-                console.log("[CMDPARSER] Invalid option set for 'cmdlog'")
+                main.error("[CMDPARSER] Invalid option set for 'cmdlog'")
             if (typeof options.msgedit == "boolean")
                 this.options.msgedit = options.msgedit
             else if (options.msgedit)
-                console.log("[CMDPARSER] Invalid option set for 'msgedit'")
+                main.error("[CMDPARSER] Invalid option set for 'msgedit'")
             if (typeof options.logfilepath == "string")
                 this.options.logfilepath = options.logfilepath
             else if (options.logfilepath)
-                console.log("[CMDPARSER] Invalid option set for 'logfilepath'")
+                main.error("[CMDPARSER] Invalid option set for 'logfilepath'")
             if (typeof options.timeformat == "string")
                 this.options.timeformat = options.timeformat
             else if (options.timeformat)
-                console.log("[CMDPARSER] Invalid option set for 'timeformat'")
+                main.error("[CMDPARSER] Invalid option set for 'timeformat'")
             if (typeof options.invoketolower == "boolean")
                 this.options.invoketolower = options.invoketolower
             else if (options.invoketolower)
-                console.log("[CMDPARSER] Invalid option set for 'invoketolower'")
+                main.error("[CMDPARSER] Invalid option set for 'invoketolower'")
             if (typeof options.ownerpermlvl == "number")
                 this.options.ownerpermlvl = options.ownerpermlvl
             else if (options.ownerpermlvl)
-                console.log("[CMDPARSER] Invalid option set for 'ownerpermlvl'")
+                main.error("[CMDPARSER] Invalid option set for 'ownerpermlvl'")
 
             return this
         }
@@ -160,7 +161,7 @@ class CmdParser {
          * @returns {number} Max perm lvl
          */
         this.getPermLvl = function(memb) {
-            console.log(memb.guild.owner.id, memb.id, memb.guild.owner.id == memb.id, this.options.ownerpermlvl)
+            main.info(memb.guild.owner.id, memb.id, memb.guild.owner.id == memb.id, this.options.ownerpermlvl)
             if (memb.id == this.host)
                 return 999
             if (memb.guild.owner.id == memb.id && this.options.ownerpermlvl)
@@ -182,7 +183,7 @@ class CmdParser {
             if (Array.isArray(typename))
                 typename.forEach(t => {
                     if (typeof t != "string" || !t)
-                        console.log("[CMDPARSER] Could not set new type: Invalid argument!")
+                        main.error("[CMDPARSER] Could not set new type: Invalid argument!")
                     else {
                         t = t.toUpperCase()
                         this.type[t] = t
@@ -190,7 +191,7 @@ class CmdParser {
                 })
             else
                 if (typeof typename != "string" || !typename)
-                    console.log("[CMDPARSER] Could not set new type: Invalid argument!")
+                    main.error("[CMDPARSER] Could not set new type: Invalid argument!")
                 else {
                     typename = typename.toUpperCase()
                     this.type[typename] = typename
@@ -281,7 +282,7 @@ class CmdParser {
                     else {
                         try {
                             if (this.options.cmdlog)
-                                console.log(`[COMMAND] ${this.getTime()} (${author.user.username} @ ${guild.name}) '${cont}'`)
+                                main.info(`[COMMAND] ${this.getTime()} (${author.user.username} @ ${guild.name}) '${cont}'`)
                             this.cmds[invoke].cmdfunc(msg, args)
                             if (this.options.logfilepath && this.options.logfilepath != '') {
                                 var fs = require('fs')
@@ -380,7 +381,7 @@ class CmdParser {
 
         bot.on('ready', () => {
             if (this.options.cmdlog)
-                console.log(`[CMDPARSER] Registered ${Object.keys(this.helplist).length} commands`)
+                main.info(`[CMDPARSER] Registered ${Object.keys(this.helplist).length} commands`)
         })
 
         this.getTime = function() {

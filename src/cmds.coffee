@@ -13,8 +13,8 @@ exports.ping = () -> "Pong!"
 exports.pong = () -> "Ping!"
 exports.version = () -> "Version: "+version
 exports.testargs = (msg, args) ->
-  console.log(msg)
-  console.log(args)
+  main.info msg
+  main.info args
 exports.poke = (msg, args) ->
   main.funcs.poke msg
 

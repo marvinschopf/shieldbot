@@ -10,7 +10,7 @@ exports.setStatus = (status) ->
   bot.editStatus {name: status}
 
 exports.info = (i) ->
-  console.log(i)
+  main.info i
 
 exports.poke = (msg) ->
   for mention in msg.mentions

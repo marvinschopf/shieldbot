@@ -11,7 +11,7 @@ exports.setBot = (b) ->
 
 registerEvents = () ->
   bot.on "ready", () ->
-    console.log "I am ready!"
+    main.info "I am ready!"
 
   bot.on "messageCreate", (msg) ->
     main.chatflag.check msg

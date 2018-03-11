@@ -26,6 +26,24 @@ const Color = {
     orange: 0xe54602
 }
 
+/**
+ * Short function for sending a colored
+ * error message in console.
+ * @param {*String} content 
+ */
+function error(content) {
+    console.log(`[ERROR] ${content}`.red)
+}
+
+/**
+ * Short function for sending a colored
+ * information message in console.
+ * @param {*String} content 
+ */
+function info(content) {
+    console.log(`${"[INFO] ".cyan} ${content}`)
+}
+
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
 
 const bot = new Eris.CommandClient(config.token, {}, {
@@ -97,6 +115,8 @@ exports.chatflag = chatflag
 exports.sendEmbed = sendEmbed
 exports.color = Color
 exports.funcs = funcs
+exports.info = info
+exports.error = error
 
 
 bot.connect();
