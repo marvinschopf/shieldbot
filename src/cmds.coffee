@@ -46,9 +46,9 @@ exports.playfile = (msg, args) ->
         if connection.playing
           do connection.stopPlaying
         connection.play filename
-        return `Now playing **#{filename}**`
+        return 'Now playing **#{filename}**'
         connection.once "end", () ->
-          bot.createMessage msg.channel.id, `Finished **#{$filename}**`
+          bot.createMessage msg.channel.id, 'Finished **#{$filename}**'
 
     else
       return "No file specified!"
