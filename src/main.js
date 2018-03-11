@@ -6,6 +6,7 @@ const { CmdParser } = require('./cmdparser.js')
 const Eris = require('eris');
 const colors = require('colors')
 const aload = require('after-load');
+const mysql = require('mysqli');
 const funcs = require("./funcs.coffee");
 const cmds = require('./cmds.coffee');
 const chatflag = require('./chatflag.js');
@@ -44,19 +45,38 @@ function info(content) {
     console.log(`${"[INFO] ".cyan} ${content}`)
 }
 
+info("Reading configuration...");
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
 
+info("Loading ErisClient...");
 const bot = new Eris.CommandClient(config.token, {}, {
   description: config.description,
   owner: config.owner,
   prefix: config.prefix
 });
 
+
+// Set up database connection
+info("Setting up MySql connection...")
+exports.dbcon = mysql.createConnection({
+    host: config.mysql.host,
+    user: config.mysql.user,
+    password: config.mysql.password,
+    database: config.mysql.database
+})
+
+// Connecting database
+exports.dbcon.connect();
+
+
+info("Setting up modules...");
 funcs.setBot(bot);
 cmds.setBot(bot);
 events.setBot(bot);
 cmds.setVersion(VERSION);
 chatflag.setBot(bot);
+
+info("Done with setup!");
 
 /*
   ≤=======≥
