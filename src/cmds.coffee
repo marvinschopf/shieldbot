@@ -16,8 +16,8 @@ exports.testargs = (msg, args) ->
   console.log(msg)
   console.log(args)
 exports.poke = (msg, args) ->
-  main.pokeUser msg
-  
+  main.funcs.poke msg
+
 exports.avatarlink = (msg, args) ->
   memb = msg.member
   if msg.mentions && msg.mentions != null

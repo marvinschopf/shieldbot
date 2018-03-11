@@ -94,7 +94,7 @@ exports.info = funcs.info
 exports.checkMsg = chatflag.check
 exports.sendEmbed = sendEmbed
 exports.color = Color
-exports.pokeUser = funcs.poke
+exports.funcs = funcs
 
 
 bot.connect();
