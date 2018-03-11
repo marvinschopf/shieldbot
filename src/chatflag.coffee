@@ -22,6 +22,5 @@ exports.check = (msg) ->
     wordflags = !flags.words ? [] : flags.words
     if cont.contains(linkflags) && cont.contains(['http://', 'https://', 'www.'])
       bot.deleteMessage msg.channel.id, msg.id, 'Not allowed content: #{type.BLACKLISTED_LINK}'
-
     if cont.contains(wordflags)
       bot.deleteMessage msg.channel.id, msg.id, 'Not allowed content: #{type.BLACKLISTED_WORD}'

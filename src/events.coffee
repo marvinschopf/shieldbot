@@ -14,4 +14,4 @@ registerEvents = () ->
     console.log "I am ready!"
 
   bot.on "messageCreate", (msg) ->
-    main.checkMsg msg
+    main.chatflag.check msg
