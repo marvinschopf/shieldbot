@@ -16,10 +16,8 @@ exports.testargs = (msg, args) ->
   console.log(msg)
   console.log(args)
 exports.poke = (msg, args) ->
-  for mention in msg.mentions
-    bot.deleteMessage msg.channel.id, msg.id, 'Command removed'
-    bot.getDMChannel(mention.id).then((chan) => main.sendEmbed(chan,"Poke: "+msg.author.username+" poked you!", "Poke", main.color.orange))
-
+  main.pokeUser msg
+  
 exports.avatarlink = (msg, args) ->
   memb = msg.member
   if msg.mentions && msg.mentions != null

@@ -12,5 +12,7 @@ exports.setStatus = (status) ->
 exports.info = (i) ->
   console.log(i)
 
-exports.poke = (user, target) ->
-  
+exports.poke = (msg) ->
+  for mention in msg.mentions
+    bot.deleteMessage msg.channel.id, msg.id, 'Command removed'
+    bot.getDMChannel(mention.id).then((chan) => main.sendEmbed(chan,"Poke: "+msg.author.username+" poked you!", "Poke", main.color.orange))
